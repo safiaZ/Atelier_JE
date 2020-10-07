@@ -7,8 +7,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -113,6 +115,7 @@ public class Pairing extends AppCompatActivity {
             connected(mmSocket);
             //streamVideo();
         }
+        @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
         private void connected(BluetoothSocket socket) {
            try {
                 String rootDir = Environment.getExternalStorageDirectory()

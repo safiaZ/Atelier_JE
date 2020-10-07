@@ -22,7 +22,6 @@
     <string name="downloadFailed">Download Failed…</string>
     <string name="downloadAgain">Download Again</string>
 
-
     <!--  BluetoothChat -->
     <string name="send">Send</string>
     <string name="not_connected">You are not connected to a device</string>
