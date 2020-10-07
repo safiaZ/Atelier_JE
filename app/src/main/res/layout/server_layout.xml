@@ -23,11 +23,12 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="145dp"
         android:layout_marginTop="15dp"
-        android:progressTint="#AF2323"
+        android:progressTint="#D18D8D"
         android:visibility="invisible"
-        tools:visibility="invisible" />
+        tools:visibility="invisible"
+        android:indeterminateTint="@color/colorAccent"/>
 
 
 </LinearLayout>

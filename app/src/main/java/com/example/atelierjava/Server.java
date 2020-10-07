@@ -130,6 +130,19 @@ public class Server extends AppCompatActivity {
         String aDiscoverable = BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE;
         startActivityForResult(new Intent(aDiscoverable), 1);
 
+        if (bluetoothAdapter == null) {
+            // Device doesn't support Bluetooth
+            System.out.println("This device doesn't support bluetooth");
+        }
+        //request user to enable blutotooh if blutooth is disabled without quitting the app
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+        // Code here executes on main thread after user presses button
+        AcceptThread cth = new AcceptThread();
+        cth.start();
+
 
         final Button buttonDownload = findViewById(R.id.downloadButton);
         buttonDownload.setOnClickListener(new View.OnClickListener() {
@@ -159,11 +172,13 @@ public class Server extends AppCompatActivity {
     public class DownloadingTask extends AsyncTask<Void, Void, Void> {
 
         String outputFile;
+        final ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Download Started", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Downloading the video", Toast.LENGTH_SHORT).show();
+            mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -216,7 +231,8 @@ public class Server extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             try {
                 if (outputFile != null) {
-                    Toast.makeText(getApplicationContext(), "Download Completed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "" + "The video has been downloaded", Toast.LENGTH_SHORT).show();
+                    mProgressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(getApplicationContext(), "Download Failed", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Download Failed");
