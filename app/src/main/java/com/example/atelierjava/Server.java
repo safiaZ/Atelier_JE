@@ -159,11 +159,13 @@ public class Server extends AppCompatActivity {
     public class DownloadingTask extends AsyncTask<Void, Void, Void> {
 
         String outputFile;
+        final ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Download Started", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Downloading the video", Toast.LENGTH_SHORT).show();
+            mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -216,7 +218,8 @@ public class Server extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             try {
                 if (outputFile != null) {
-                    Toast.makeText(getApplicationContext(), "Download Completed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "\n" + "The video has been downloaded", Toast.LENGTH_SHORT).show();
+                    mProgressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(getApplicationContext(), "Download Failed", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Download Failed");
