@@ -26,9 +26,9 @@
         <activity
             android:name=".Server" />
         <activity
-            android:name=".DeviceList" />
+            android:name=".Client" />
         <activity
-            android:name=".Pairing" />
+            android:name=".Streaming" />
     </application>
 
 </manifest>

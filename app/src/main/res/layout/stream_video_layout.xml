@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="clip_horizontal"
-    tools:context="com.example.atelierjava.Pairing">
+    tools:context="com.example.atelierjava.Streaming">
 
     <Button
         android:id="@+id/view_video"

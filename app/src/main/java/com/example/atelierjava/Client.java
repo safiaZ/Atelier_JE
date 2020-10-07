@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-public class DeviceList extends AppCompatActivity {
+public class Client extends AppCompatActivity {
     static final int STATE_LISTENING=1;
     static final int STATE_CONNECTING=2;
     static final int STATE_CONNECTED=3;
@@ -62,7 +62,7 @@ public class DeviceList extends AppCompatActivity {
                     String noDevices = getResources().getText(R.string.none_found).toString();
                     itemsAdapter.add(noDevices);
                 }
-                Toast.makeText(DeviceList.this, "End Discovery", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Client.this, "End Discovery", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -118,7 +118,7 @@ public class DeviceList extends AppCompatActivity {
             bluetoothAdapter.cancelDiscovery();
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
-            Intent intent = new Intent(DeviceList.this, Pairing.class);
+            Intent intent = new Intent(Client.this, Streaming.class);
             intent.putExtra("SELECTED DEVICE", discoveredList.get(arg2));
             startActivity(intent);
         }

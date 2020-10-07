@@ -3,9 +3,6 @@ package com.example.atelierjava;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,16 +20,12 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.StringWriter;
-import java.nio.file.Files;
 import java.util.UUID;
 
-public class Pairing extends AppCompatActivity {
+public class Streaming extends AppCompatActivity {
 
     VideoView videoView;
     private LocalBroadcastManager localBroadcastManager;
@@ -51,7 +44,7 @@ public class Pairing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stream_video_layout);
         BluetoothDevice bd = getIntent().getExtras().getParcelable("SELECTED DEVICE");
-        Toast.makeText(Pairing.this,bd.getName(),Toast.LENGTH_LONG).show();
+        Toast.makeText(Streaming.this,bd.getName(),Toast.LENGTH_LONG).show();
         cThread = new ConnectThread(bd);
         cThread.start();
 

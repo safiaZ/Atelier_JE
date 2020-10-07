@@ -147,15 +147,6 @@ public class NetworkFragment extends Fragment {
                 }
 
 
-                //Get File if SD card is present
-                if (new CheckForSDCard().isPresent()) {
-
-                    apkStorage = new File(
-                            Environment.getExternalStorageDirectory() + "/"
-                                    + downloadDirectory);
-                } else
-                    Toast.makeText(context, "Oops!! There is no SD Card.", Toast.LENGTH_SHORT).show();
-
                 //If File is not present create directory
                 if (!apkStorage.exists()) {
                     apkStorage.mkdir();
