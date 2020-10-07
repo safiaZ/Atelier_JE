@@ -147,7 +147,6 @@ public class Server extends AppCompatActivity {
         final Button buttonDownload = findViewById(R.id.downloadButton);
         buttonDownload.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(Server.this, "Download clicked", Toast.LENGTH_SHORT).show();
                 new DownloadingTask().execute();
             }
         });

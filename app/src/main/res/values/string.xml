@@ -15,12 +15,16 @@
   -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Streamer Video</string>
+
     <string name="download_video">Download Video</string>
     <string name="openFolder">Open Downloaded Folder</string>
     <string name="downloadStarted">Download Started…</string>
     <string name="downloadCompleted">Download Completed…</string>
     <string name="downloadFailed">Download Failed…</string>
     <string name="downloadAgain">Download Again</string>
+
 
     <!--  BluetoothChat -->
     <string name="send">Send</string>

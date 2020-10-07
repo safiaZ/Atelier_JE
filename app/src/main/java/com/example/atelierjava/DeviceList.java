@@ -4,12 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
-import com.example.atelierjava.DeviceList;
 import android.content.pm.PackageManager;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.AdapterView;
@@ -27,9 +23,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
@@ -97,8 +90,8 @@ public class DeviceList extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> pairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
-        itemsAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
+        ArrayAdapter<String> pairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_layout);
+        itemsAdapter = new ArrayAdapter<String>(this, R.layout.device_layout);
 
         ListView newDevicesListView = (ListView) findViewById(R.id.new_devices);
         newDevicesListView.setAdapter(itemsAdapter);
