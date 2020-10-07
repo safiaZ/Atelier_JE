@@ -130,6 +130,19 @@ public class Server extends AppCompatActivity {
         String aDiscoverable = BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE;
         startActivityForResult(new Intent(aDiscoverable), 1);
 
+        if (bluetoothAdapter == null) {
+            // Device doesn't support Bluetooth
+            System.out.println("This device doesn't support bluetooth");
+        }
+        //request user to enable blutotooh if blutooth is disabled without quitting the app
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+        // Code here executes on main thread after user presses button
+        AcceptThread cth = new AcceptThread();
+        cth.start();
+
 
         final Button buttonDownload = findViewById(R.id.downloadButton);
         buttonDownload.setOnClickListener(new View.OnClickListener() {
