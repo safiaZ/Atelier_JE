@@ -218,7 +218,7 @@ public class Server extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             try {
                 if (outputFile != null) {
-                    Toast.makeText(getApplicationContext(), "\n" + "The video has been downloaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "" + "The video has been downloaded", Toast.LENGTH_SHORT).show();
                     mProgressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(getApplicationContext(), "Download Failed", Toast.LENGTH_SHORT).show();

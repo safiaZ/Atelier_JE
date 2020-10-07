@@ -134,7 +134,6 @@ public class DeviceList extends AppCompatActivity {
     private void discover() {
         Log.d(TAG, "discover()");
         setProgressBarIndeterminateVisibility(true);
-        setTitle(R.string.scanning);
         findViewById(R.id.title_new_devices).setVisibility(View.VISIBLE);
         if (bluetoothAdapter.isDiscovering()) {
             bluetoothAdapter.cancelDiscovery();
