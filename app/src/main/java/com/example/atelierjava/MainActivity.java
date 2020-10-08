@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         else {
-            Log.d("MAIN_ACTIVITY", "WRITE PERMISSION ALREADY GRANTED");
+            Log.d("MAIN_ACTIVITY", "PERMISSION AUTHORIZED");
         }
     }
     public void goToServer(View view) {

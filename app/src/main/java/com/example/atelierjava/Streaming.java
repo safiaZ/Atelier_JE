@@ -76,8 +76,6 @@ public class Streaming extends AppCompatActivity {
         public ConnectThread(BluetoothDevice device) {
             mmDevice = device;
             BluetoothSocket tmp = null;
-            // Get a BluetoothSocket for a connection with the
-            // given BluetoothDevice
             try {
                 tmp = mmDevice.createRfcommSocketToServiceRecord(
                         MY_UUID);
@@ -88,16 +86,11 @@ public class Streaming extends AppCompatActivity {
         }
 
         public void run() {
-            // Always cancel discovery because it will slow down a connection
             BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
             mAdapter.cancelDiscovery();
-            // Make a connection to the BluetoothSocket
             try {
-                // This is a blocking call and will only return on a
-                // successful connection or an exception
                 mmSocket.connect();
             } catch (IOException e) {
-                // Close the socket
                 try {
                     mmSocket.close();
                 } catch (IOException closeException) {
@@ -106,7 +99,6 @@ public class Streaming extends AppCompatActivity {
                 return;
             }
             connected(mmSocket);
-            //streamVideo();
         }
         @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
         private void connected(BluetoothSocket socket) {
@@ -139,8 +131,6 @@ public class Streaming extends AppCompatActivity {
                 while ((read = inputStream.read(bytes)) != -1) {
                     outputStream.write(bytes, 0, read);
                 }
-
             }
     }
-
 }

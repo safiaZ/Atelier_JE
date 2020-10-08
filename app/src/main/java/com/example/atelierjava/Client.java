@@ -37,7 +37,6 @@ public class Client extends AppCompatActivity {
     private static final UUID MY_UUID =
             UUID.fromString("8ce255c0-223a-11e0-ac64-0803450c9a66");
 
-
     private BluetoothAdapter bluetoothAdapter;
     private ArrayAdapter<String> itemsAdapter;
     private ArrayList<BluetoothDevice> discoveredList;
@@ -52,7 +51,7 @@ public class Client extends AppCompatActivity {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.d(TAG, "Found a fucking device: " + device.getName());
+                Log.d(TAG, "A device was founded: " + device.getName());
                 itemsAdapter.add(device.getName() + "\n" + device.getAddress());
                 discoveredList.add(device);
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
@@ -62,11 +61,10 @@ public class Client extends AppCompatActivity {
                     String noDevices = getResources().getText(R.string.none_found).toString();
                     itemsAdapter.add(noDevices);
                 }
-                Toast.makeText(Client.this, "End Discovery", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Client.this, "End", Toast.LENGTH_SHORT).show();
             }
         }
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +97,6 @@ public class Client extends AppCompatActivity {
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         this.registerReceiver(receiver, filter);
-
-
 
         Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
         if (pairedDevices.size() > 0) {

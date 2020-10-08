@@ -36,9 +36,9 @@ public class Server extends AppCompatActivity {
 
     BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private final static int REQUEST_ENABLE_BT = 1;
+    private static final String VIDEO_URL = "https://ia800201.us.archive.org/22/items/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
     private static final String TAG = "DownloadService";
     private static final String OUTPUT_FILE_NAME = "MyVideo.mp4";
-    private static final String VIDEO_URL = "https://ia800201.us.archive.org/22/items/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
 
 
     private class AcceptThread extends Thread {
@@ -61,7 +61,6 @@ public class Server extends AppCompatActivity {
 
         public void run() {
             BluetoothSocket socket = null;
-
             while (true) {
                 try {
                     socket = mmServerSocket.accept();
@@ -69,7 +68,6 @@ public class Server extends AppCompatActivity {
                     Log.e(TAG, "Socket's accept() method failed", e);
                     break;
                 }
-
                 if (socket != null) {
                     connected(socket);
 
@@ -126,23 +124,18 @@ public class Server extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.server_layout);
-
         String aDiscoverable = BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE;
         startActivityForResult(new Intent(aDiscoverable), 1);
 
         if (bluetoothAdapter == null) {
-            // Device doesn't support Bluetooth
             System.out.println("This device doesn't support bluetooth");
         }
-        //request user to enable blutotooh if blutooth is disabled without quitting the app
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
-        // Code here executes on main thread after user presses button
         AcceptThread cth = new AcceptThread();
         cth.start();
-
 
         final Button buttonDownload = findViewById(R.id.downloadButton);
         buttonDownload.setOnClickListener(new View.OnClickListener() {
@@ -172,14 +165,12 @@ public class Server extends AppCompatActivity {
 
         String outputFile;
         final ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Toast.makeText(getApplicationContext(), "Downloading the video", Toast.LENGTH_SHORT).show();
             mProgressBar.setVisibility(View.VISIBLE);
         }
-
         @Override
         protected Void doInBackground(Void... arg0) {
             try {
@@ -196,9 +187,8 @@ public class Server extends AppCompatActivity {
                     Log.e(TAG, "Server returned HTTP " + status
                             + " " + httpURLConnection.getResponseMessage());
                 }
-
                 File localFile = new File(rootFile, OUTPUT_FILE_NAME);
-                outputFile = "PATH OF LOCAL FILE : " + localFile.getPath();
+                outputFile = "PATH : " + localFile.getPath();
                 if (rootFile.exists()) Log.d(TAG, outputFile);
                 if (!localFile.exists()) {
                     localFile.createNewFile();
@@ -214,18 +204,15 @@ public class Server extends AppCompatActivity {
                         fos.write(buffer, 0, len1);
                     }
                 } catch (IOException se) {
-                    Log.d(TAG, "Hmmmmm");
+                    Log.d(TAG, "Exception has occured");
                 }
                 fos.close();
                 in.close();
-
-
             } catch (IOException e) {
-                Log.d("Error....", e.toString());
+                Log.d("Error", e.toString());
             }
             return null;
         }
-
         @Override
         protected void onPostExecute(Void result) {
             try {
@@ -243,5 +230,4 @@ public class Server extends AppCompatActivity {
             super.onPostExecute(result);
         }
         }
-
 }
